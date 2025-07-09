@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+    <!-- comment 등록 -->
+    <insert id="comment_insert" parameterType="comment">
+        insert into commenttb (
+            idx, name, content, pwd, ip, regdate
+        ) values (
+            #{idx}, #{name}, #{content}, #{pwd}, #{ip}, NOW()
+        )
+    </insert>
+    
+    <!-- comment조회 -->
+    <select id="comment_list" parameterType="int" resultType="comment">
+        select * from commenttb where idx=#{idx} order by c_idx
+    </select>
+    
+    <!-- comment삭제 -->
+    <delete id="comment_delete" parameterType="comment">
+        delete from commenttb where c_idx=#{c_idx} and pwd=#{pwd}
+    </delete>
+    
+    <!-- 원글 idx에 해당하는 comment의 총 갯수 -->
+    <select id="comment_idx_count" resultType="int" parameterType="int">
+        select count(*) from commenttb where idx=#{idx}
+    </select>
+    
+    <!-- 페이지별 댓글 조회 -->
+    <select id="comment_list_page" parameterType="java.util.Map" resultType="comment">
+        select * from commenttb where idx=#{idx} order by c_idx limit #{start}, #{end}
+    </select>
+</mapper> 
