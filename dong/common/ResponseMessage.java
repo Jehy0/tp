@@ -1,4 +1,4 @@
-package common;
+package team_project.dong.common;
 
 public class Common {
     public static class Dong {
