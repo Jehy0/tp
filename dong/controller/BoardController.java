@@ -1,4 +1,4 @@
-package team_project.dong.controller;
+package com.init.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
